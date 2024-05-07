@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dice Roll</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        position: relative;
+    }
+
+    #dice {
+        width: 100px;
+        height: 100px;
+        background-color: lightblue;
+        text-align: center;
+        line-height: 100px;
+        font-size: 24px;
+        cursor: pointer;
+        transition: transform 0.5s ease-in-out, background-color 0.5s ease-in-out;
+    }
+
+    #numDiceContainer {
+        position: absolute;
+        bottom: 20px;
+        left: 50%; /* Center the container horizontally */
+        transform: translateX(-50%); /* Center the container horizontally */
+        text-align: center;
+    }
+
+    #numDice {
+        width: 120px;
+        margin-right: 10px;
+    }
+
+    #colorChanger {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        text-align: center;
+    }
+
+    .colorOption {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 5px;
+        cursor: pointer;
+        border-radius: 50%;
+    }
+
+    header {
+        position: absolute;
+        top: 0;
+        left: 1;
+        right: 1;
+        width: 50%;
+        height: 99px;
+        background-color: #222;
+        color: #fff;
+        text-align: center;
+        line-height: 100px;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Dice Roll</h1>
+</header>
+
+<div id="dice">Click to Roll</div>
+
+<div id="numDiceContainer">
+    <input type="number" id="numDice" min="1" placeholder="Enter Dice Limit">
+</div>
+
+<div id="colorChanger">
+    <div class="colorOption" style="background-color: red" onclick="changeColor('red')"></div>
+    <div class="colorOption" style="background-color: blue" onclick="changeColor('blue')"></div>
+    <div class="colorOption" style="background-color: green" onclick="changeColor('green')"></div>
+    <div class="colorOption" style="background-color: yellow" onclick="changeColor('yellow')"></div>
+    <div class="colorOption" style="background-color: orange" onclick="changeColor('orange')"></div>
+    <div class="colorOption" style="background-color: purple" onclick="changeColor('purple')"></div>
+    <div class="colorOption" style="background-color: pink" onclick="changeColor('pink')"></div>
+    <div class="colorOption" style="background-color: greenyellow" onclick="changeColor('greenyellow')"></div>
+    <div class="colorOption" style="background-color: gold" onclick="changeColor('gold')"></div>
+    <div class="colorOption" style="background-color: darkblue" onclick="changeColor('darkblue')"></div>
+    <div class="colorOption" style="background-color: lightblue" onclick="changeColor('lightblue')"></div>
+    <div class="colorOption" style="background-color: black" onclick="changeColor('black')"></div>
+    <div class="colorOption" style="background-color: rgb(9, 255, 0)" onclick="changeColor('rgb(9, 255, 0)')"></div>
+    <div class="colorOption" style="background-color: grey" onclick="changeColor('grey')"></div>
+    <div class="colorOption" style="background-color: violet" onclick="changeColor('violet')"></div>
+    <div class="colorOption" style="background-color: white" onclick="changeColor('white')"></div>
+</div>
+
+<script>
+    document.getElementById("dice").addEventListener("click", rollDice);
+
+    function rollDice() {
+        var limit = parseInt(document.getElementById("numDice").value);
+        var result = Math.floor(Math.random() * limit) + 1;
+        var diceElement = document.getElementById("dice");
+        diceElement.style.transform = "rotate(360deg)";
+        setTimeout(function() {
+            diceElement.style.transform = "rotate(0deg)";
+            setTimeout(function() {
+                document.getElementById("dice").innerText = result;
+            }, 300); // Delay before updating displayed number
+        }, 500); // Reset the rotation after 500ms
+    }
+
+    function changeColor(color) {
+        document.getElementById("dice").style.backgroundColor = color;
+    }
+</script>
+
+</body>
+</html>
